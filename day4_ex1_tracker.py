@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Optional
 
 
-# ── TASK 1A: Carrier config using @dataclass ──────────────────────────────
+# Carrier config using dataclass
 @dataclass
 class CarrierConfig:
     """Immutable carrier SLA configuration."""
@@ -23,7 +23,7 @@ class CarrierConfig:
             raise ValueError("sla_days must be > 0")
 
 
-# ── TASK 1B: ShipmentTracker class ─────────────────────────────────────────
+# ShipmentTracker class
 class ShipmentTracker:
     """Tracks a single shipment through its delivery lifecycle.
 
@@ -78,7 +78,7 @@ class ShipmentTracker:
             []
         )  # (from_status, to_status, timestamp)
 
-    # ── TASK 1C: Properties ────────────────────────────────────────────────
+    #  Properties
     @property
     def status(self) -> str:
         return self._status
@@ -124,7 +124,7 @@ class ShipmentTracker:
         # True if delay_days > carrier.sla_days
         return self._delay_days > self.carrier.sla_days
 
-    # ── TASK 1D: Methods ───────────────────────────────────────────────────
+    # Methods
     def delay_penalty(self, rate: Optional[float] = None) -> float:
         """Return penalty in USD. Uses PENALTY_RATE_PER_DAY if rate not given."""
         effective_rate = rate if rate is not None else self.PENALTY_RATE_PER_DAY
@@ -170,7 +170,7 @@ class ShipmentTracker:
         )
 
 
-# ── Task 2: Test script ─────────────────────────────────────────────────
+# Test script
 if __name__ == "__main__":
     # Define carriers
     dhl = CarrierConfig(code="dhl", name="DHL Express", sla_days=2, region="APAC")
